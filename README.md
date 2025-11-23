@@ -14,7 +14,6 @@ Spring Boot로 구현된 커뮤니티 백엔드 애플리케이션
 
 ## TODO
 
-- [ ] Backend 요구사항 정리
+- [x] Backend 요구사항 정리
 - [ ] DB 스키마 설계
 - [ ] API 명세서 작성
-
