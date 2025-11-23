@@ -39,7 +39,7 @@
   3. 닉네임 검증
   4. 비밀번호 해시 처리
 - 출력: userId
-- 예외: USER_ID_DUPLICATE, INVALID_PASSWORD
+- 예외: USER_ID_DUPLICATE, INVALID_PASSWORD, INVALID_NICKNAME
 
 **FR-002 로그인**
 
