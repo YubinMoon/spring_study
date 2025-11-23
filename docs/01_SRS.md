@@ -45,7 +45,7 @@
 
 - 입력: username, password
 - 처리: 사용자 인증 후 세션 쿠키 발급
-- 출력: session Cookie
+- 출력: userId, session Cookie
 - 예외: INVALID_CREDENTIALS
 
 **FR-003 회원 정보 조회**
@@ -66,12 +66,12 @@
 
 **FR-005 회원 탈퇴**
 
-- 입력: userId
+- 입력: None
 - 처리:
   1. 유저 세션 검증
   2. 소프트 삭제 처리
 - 출력: 성공 여부
-- 예외: UNAUTHORIZED, USER_NOT_FOUND
+- 예외: UNAUTHORIZED
 
 #### 3.1.2 Post Management
 
@@ -86,7 +86,7 @@
 
 - 입력: postId
 - 처리: 개시글 조회
-- 출력: title, content, author, createdAt, likeCount, unlikeCount, comments[]
+- 출력: postId, title, content, author, createdAt, likeCount, unlikeCount, comments[]
 - 예외: POST_NOT_FOUND
 
 **FR-012 게시글 목록 조회**
@@ -103,7 +103,7 @@
   1. 세션으로 작성자 확인
   2. 게시글 수정
 - 출력: 성공 여부
-- 예외: UNAUTHORIZED, POST_NOT_FOUND
+- 예외: UNAUTHORIZED, POST_NOT_FOUND, INVALID_TITLE
 
 **FR-014 게시글 삭제**
 
@@ -129,16 +129,19 @@
 **FR-021 댓글 목록 조회**
 
 - 입력: postId
-- 처리: 게시글의 댓글 조회
+- 처리:
+  1. 게시글 존재 여부 검증
+  2. 댓글 조회
 - 출력: comments[]
-- 예외: 없음
+- 예외: POST_NOT_FOUND
 
 **FR-022 댓글 수정**
 - 입력: commentId, content
 - 처리:
   1. 유저 세션 검증
   2. 댓글 작성자 확인
-  3. 댓글 수정
+  3. 댓글 존재 여부 검증
+  4. 댓글 수정
 - 출력: 성공 여부
 - 예외: UNAUTHORIZED, COMMENT_NOT_FOUND
 
