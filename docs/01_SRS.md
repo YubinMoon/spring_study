@@ -32,9 +32,9 @@
 
 **FR-001 회원가입**
 
-- 입력: userId, password, nickname
+- 입력: username, password, nickname
 - 처리:
-  1. userId 중복 검증
+  1. username 중복 검증
   2. password 정책 검증
   3. 닉네임 검증
   4. 비밀번호 해시 처리
@@ -43,7 +43,7 @@
 
 **FR-002 로그인**
 
-- 입력: userId, password
+- 입력: username, password
 - 처리: 사용자 인증 후 세션 쿠키 발급
 - 출력: session Cookie
 - 예외: INVALID_CREDENTIALS
@@ -52,7 +52,7 @@
 
 - 입력: userId
 - 처리: 유저 정보 조회
-- 출력: userId, nickname, createdAt
+- 출력: nickname, createdAt
 - 예외: USER_NOT_FOUND
 
 **FR-004 회원 정보 수정**
