@@ -1,5 +1,8 @@
 package study.spring.community.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,4 +44,19 @@ public class PostServiceImpl implements PostService {
         .build();
   }
 
+  @Override
+  public List<PostDetailResponse> getPosts(int page, int size) {
+    List<Post> posts = postDAO.getPosts(page, size);
+    List<PostDetailResponse> postDetailResponses = new ArrayList<>();
+    for (Post post : posts) {
+      postDetailResponses.add(PostDetailResponse.builder()
+          .postId(post.getId())
+          .title(post.getTitle())
+          .content(post.getContent())
+          .createdAt(post.getCreatedAt())
+          .likeCount(0)
+          .build());
+    }
+    return postDetailResponses;
+  }
 }
