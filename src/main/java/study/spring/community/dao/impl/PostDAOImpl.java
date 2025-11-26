@@ -22,4 +22,10 @@ public class PostDAOImpl implements PostDAO {
     return postRepository.save(post);
   }
 
+  @Override
+  public Post getPost(long postId) {
+    return postRepository.findById(postId)
+        .orElseThrow(() -> new RuntimeException("Post not found"));
+  }
+
 }

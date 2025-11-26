@@ -6,4 +6,6 @@ public interface PostDAO {
 
   Post savePost(Post post);
 
+  Post getPost(long postId);
+
 }

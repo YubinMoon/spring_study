@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import study.spring.community.dao.PostDAO;
 import study.spring.community.dto.PostCreateRequest;
+import study.spring.community.dto.PostDetailResponse;
 import study.spring.community.dto.PostIdResponse;
 import study.spring.community.entity.Post;
 import study.spring.community.service.PostService;
@@ -26,6 +27,18 @@ public class PostServiceImpl implements PostService {
     post.setContent(postCreateRequest.getContent());
     Post savedPost = postDAO.savePost(post);
     return new PostIdResponse(savedPost.getId());
+  }
+
+  @Override
+  public PostDetailResponse getPost(long postId) {
+    Post post = postDAO.getPost(postId);
+    return PostDetailResponse.builder()
+        .postId(post.getId())
+        .title(post.getTitle())
+        .content(post.getContent())
+        .createdAt(post.getCreatedAt())
+        .likeCount(0)
+        .build();
   }
 
 }
