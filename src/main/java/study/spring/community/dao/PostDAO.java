@@ -12,4 +12,6 @@ public interface PostDAO {
 
   List<Post> getPosts(int page, int size);
 
+  void deletePost(long postId);
+
 }

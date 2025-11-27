@@ -36,4 +36,9 @@ public class PostDAOImpl implements PostDAO {
     return postRepository.findAllByOrderByCreatedAtDesc(PageRequest.of(page, size));
   }
 
+  @Override
+  public void deletePost(long postId) {
+    postRepository.deleteById(postId);
+  }
+
 }

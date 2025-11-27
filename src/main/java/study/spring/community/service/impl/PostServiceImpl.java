@@ -61,11 +61,16 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public PostIdResponse updatePost(int postId, PostCreateRequest postCreateRequest) {
+  public PostIdResponse updatePost(long postId, PostCreateRequest postCreateRequest) {
     Post post = postDAO.getPost(postId);
     post.setTitle(postCreateRequest.getTitle());
     post.setContent(postCreateRequest.getContent());
     Post savedPost = postDAO.savePost(post);
     return new PostIdResponse(savedPost.getId());
+  }
+
+  @Override
+  public void deletePost(long postId) {
+    postDAO.deletePost(postId);
   }
 }
