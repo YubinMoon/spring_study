@@ -59,4 +59,13 @@ public class PostServiceImpl implements PostService {
     }
     return postDetailResponses;
   }
+
+  @Override
+  public PostIdResponse updatePost(int postId, PostCreateRequest postCreateRequest) {
+    Post post = postDAO.getPost(postId);
+    post.setTitle(postCreateRequest.getTitle());
+    post.setContent(postCreateRequest.getContent());
+    Post savedPost = postDAO.savePost(post);
+    return new PostIdResponse(savedPost.getId());
+  }
 }

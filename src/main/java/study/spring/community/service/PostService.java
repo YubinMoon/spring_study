@@ -13,4 +13,6 @@ public interface PostService {
   PostDetailResponse getPost(long postId);
 
   List<PostDetailResponse> getPosts(int page, int size);
+
+  PostIdResponse updatePost(int postId, PostCreateRequest postCreateRequest);
 }
