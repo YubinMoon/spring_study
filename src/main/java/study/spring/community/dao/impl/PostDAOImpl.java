@@ -2,7 +2,6 @@ package study.spring.community.dao.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +14,6 @@ public class PostDAOImpl implements PostDAO {
 
   private final PostRepository postRepository;
 
-  @Autowired
   public PostDAOImpl(PostRepository postRepository) {
     this.postRepository = postRepository;
   }
