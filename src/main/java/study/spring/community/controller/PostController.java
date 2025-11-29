@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import study.spring.community.dto.PostCreateRequest;
 import study.spring.community.dto.PostDetailResponse;
 import study.spring.community.dto.PostIdResponse;
 import study.spring.community.service.PostService;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/posts")
 public class PostController {
@@ -28,7 +32,13 @@ public class PostController {
   }
 
   @PostMapping
-  PostIdResponse createPost(@RequestBody PostCreateRequest postCreateRequest) {
+  PostIdResponse createPost(@RequestBody PostCreateRequest postCreateRequest, HttpServletRequest request) {
+    HttpSession session = request.getSession(false);
+    if (session == null || session.getAttribute("userId") == null) {
+      throw new IllegalStateException("User not logged in");
+    }
+    log.info("Session Id: {}", session.getId());
+    log.info("Session userName: {}", session.getAttribute("userId"));
     return postService.createPost(postCreateRequest);
   }
 
