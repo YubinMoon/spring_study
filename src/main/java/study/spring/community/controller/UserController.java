@@ -53,4 +53,14 @@ public class UserController {
     ResponseEntity<UserIdResponse> responseEntity = ResponseEntity.ok(userIdResponse);
     return responseEntity;
   }
+
+  @PostMapping("/logout")
+  public ResponseEntity<Void> logout(HttpServletRequest request) {
+    HttpSession session = request.getSession(false);
+    if (session != null) {
+      session.invalidate();
+      log.info("Session invalidated");
+    }
+    return ResponseEntity.ok().build();
+  }
 }
