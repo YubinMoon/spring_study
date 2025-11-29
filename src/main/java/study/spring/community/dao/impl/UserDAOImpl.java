@@ -20,4 +20,9 @@ public class UserDAOImpl implements UserDAO {
     return userRepository.save(user);
   }
 
+  @Override
+  public User getUser(String username) {
+    return userRepository.findByUsername(username);
+  }
+
 }

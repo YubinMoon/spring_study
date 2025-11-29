@@ -4,4 +4,6 @@ import study.spring.community.entity.User;
 
 public interface UserDAO {
   User saveUser(User user);
+
+  User getUser(String username);
 }
