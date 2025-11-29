@@ -49,4 +49,17 @@ public class PasswordEncoder {
     log.info("Generated hash: {}", hash);
     return "$" + salt + "$" + hash;
   }
+
+  public static boolean checkpw(String password, String stored) {
+    String[] parts = stored.split("\\$");
+    if (parts.length != 3) {
+      throw new IllegalArgumentException("Stored password is in an invalid format");
+    }
+    String salt = parts[1];
+    String hash = parts[2];
+
+    String computedHash = getHash(password, salt);
+    log.info("Computed hash: {}", computedHash);
+    return computedHash.equals(hash);
+  }
 }
